@@ -66,17 +66,17 @@ def print_version():
 
 
 if __name__ == '__main__':
-    # mkdir -p on datafile_location.
+
     Path(datafile_location).mkdir(parents=True, exist_ok=True)
 
-    # Tda.
+
     try:
         with open(datafile_location + datafile_name, 'rb') as f:
             items = pickle.load(f)
     except:
         pass
 
-    # Command line argument parsing.
+
     if len(sys.argv) <= 1:
         list_items()
         
@@ -116,6 +116,6 @@ if __name__ == '__main__':
     else:
         print_usage()
 
-    # Write all changes back to the file.
+
     with open(datafile_location + datafile_name, 'wb') as f:
         pickle.dump(items, f)
