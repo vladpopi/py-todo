@@ -69,7 +69,7 @@ if __name__ == '__main__':
     # mkdir -p on datafile_location.
     Path(datafile_location).mkdir(parents=True, exist_ok=True)
 
-    # Try to unpickle todo list from the file.
+    # Tda.
     try:
         with open(datafile_location + datafile_name, 'rb') as f:
             items = pickle.load(f)
