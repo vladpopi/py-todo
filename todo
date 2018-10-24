@@ -18,14 +18,14 @@ class TodoItem:
             days_left = (self.exp_date - datetime.now()).days
             
             if days_left > 0:
-                return self.title + " ({days_left} day{s} left)".format(
+                return self.title + " ({days_left} zi{le} ramase)".format(
                     days_left=days_left, s="s" if days_left >= 2 else "")
             elif days_left == 0:
-                return self.title + " (Tomorrow)"
+                return self.title + " (Maine)"
             elif days_left == -1:
-                return self.title + " (Today)"
+                return self.title + " (Azi)"
             else:
-                return self.title + " (DUE!)"
+                return self.title + " (!!!!!)"
 
 
 datafile_location = str(Path.home()) + '/.local/share/py-todo/'
@@ -40,7 +40,7 @@ def remove_item(index: int):
 
 def list_items():
     if len(items) > 0:
-        print("You have {item_count} item{s} left on the reminder!".format(
+        print("Ai {item_count} porcarii pe care trebuie sa le faci".format(
             item_count=len(items), s="s" if len(items) >= 2 else ""))
         index = 0
         for item in items:
@@ -49,20 +49,14 @@ def list_items():
 
 def print_usage():
     print("")
-    print("Usage: ." + sys.argv[0] + " <argument>")
-    print("-a --add                 -- Adds a new item.")
-    print("-r --remove <index>      -- Removes an item by index.")
-    print("-l --list                -- Lists all items.")
+    print("HALP: ." + sys.argv[0] + " <argument>")
+    print("-a --add                 -- Adauga element nou")
+    print("-r --remove <index>      -- Sterge un element")
+    print("-l --list                -- Listeaza elementele")
     print()
-    print("-h --help                -- Displays help message.")
-    print("-v --version             -- Displays version info.")
+    print("-h --help                -- HALP")
+    print("-v --version             -- Versiune")
 
-def print_version():
-    print("py-todo 0.2")
-    print("Copyright (C) 2018 Marco Wang")
-    print("")
-    print("This is free software, see the source for copying conditions.  There is NO")
-    print("warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE")
 
 
 if __name__ == '__main__':
@@ -81,8 +75,8 @@ if __name__ == '__main__':
         list_items()
         
     elif sys.argv[1] == '-a' or sys.argv[1] == '--add':
-        title = input("Title: ")
-        exp_date = input("Expiry date (e.g., YYYY/MM/DD) (Optional): ")
+        title = input("Titlu: ")
+        exp_date = input("Data expirarii (YYYY/MM/DD) (Optional): ")
         
         if exp_date == '':
             exp_date = None
@@ -90,7 +84,7 @@ if __name__ == '__main__':
             try:
                 exp_date = datetime(*map(int, exp_date.split('/')))
             except:
-                print("An error occurred while parsing your date.")
+                print("baga data bine ")
                 sys.exit()
         
         add_item(title, exp_date)
@@ -100,10 +94,10 @@ if __name__ == '__main__':
         if len(sys.argv) >= 3:
             try:
                 remove_item(int(sys.argv[2]))
-                print("Removed item " + sys.argv[2] + "\n")
+                print("S-a sters " + sys.argv[2] + "\n")
                 list_items()
             except:
-                print("Item does not exist.")
+                print("Nu exista elementul")
         else:
             print_usage()
         
